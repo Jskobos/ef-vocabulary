@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, FormControl } from 'react-bootstrap';
+import { Grid, Row, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import './SearchBox.css';
 
 class SearchBox extends Component {
   constructor(props) {
     super(props);
+
     this.onFilterInputChange = this.onFilterInputChange.bind(this);
     this.onSetInputChange    = this.onSetInputChange.bind(this);
+    this.onBookMinChange     = this.onBookMinChange.bind(this);
+    this.onBookMaxChange     = this.onBookMaxChange.bind(this);
   }
 
   onFilterInputChange(e) {
@@ -17,25 +20,60 @@ class SearchBox extends Component {
     this.props.handleSetInput(e.target.value);
   }
 
+  onBookMinChange(e) {
+    const min = e.target.value;
+    const max = this.props.books.max;
+    this.props.setBooks(min,max);
+  }
+
+  onBookMaxChange(e) {
+    const max = e.target.value;
+    const min = this.props.books.min;
+    this.props.setBooks(min,max);
+  }
+
   render() {
     return(
       <div className="SearchBox">
-        <Form inline>
-          <FormGroup>
+        <Grid>
+        <Row>
+          <Form inline>
+            <FormGroup>
+              <FormControl
+                className="text-search"
+                type="text"
+                value={this.props.filterText}
+                placeholder="Search"
+                onChange={this.onFilterInputChange}
+              />
+              <FormControl
+                type="text"
+                value={this.props.set}
+                placeholder="Tags"
+                onChange={this.onSetInputChange}
+              />
+            </FormGroup>
+          </Form>
+        </Row>
+        <Row>
+          <Form inline>
+            <ControlLabel>Books: </ControlLabel>
             <FormControl
+              className="small-input"
               type="text"
-              value={this.props.filterText}
-              placeholder="Search"
-              onChange={this.onFilterInputChange}
+              value={this.props.books.min}
+              onChange={this.onBookMinChange}
             />
+            <ControlLabel>–</ControlLabel>
             <FormControl
+              className="small-input"
               type="text"
-              value={this.props.set}
-              placeholder="Tags"
-              onChange={this.onSetInputChange}
+              value={this.props.books.max}
+              onChange={this.onBookMaxChange}
             />
-          </FormGroup>
-        </Form>
+          </Form>
+        </Row>
+        </Grid>
       </div>
     )
   }

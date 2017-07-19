@@ -15,6 +15,9 @@ class ResultBox extends Component {
       else if (this.props.set.length > 1 && word.set.indexOf(this.props.set) === -1) {
         return;
       }
+      else if (word.book < this.props.books.min || word.book > this.props.books.max) {
+        return;
+      }
       else {
         rows.push(
           <WordRow word={word} key={keyIndex++}/>
