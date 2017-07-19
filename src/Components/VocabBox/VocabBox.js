@@ -19,13 +19,19 @@ class VocabBox extends Component {
       filterText: '',
       cefrMin: 'A1',
       cefrMax: 'C2',
+      set: '',
       searchMode: true
     }
     this.handleTextInput = this.handleTextInput.bind(this);
+    this.handleSetInput = this.handleSetInput.bind(this);
   }
 
   handleTextInput(val) {
     this.setState({filterText:val})
+  }
+
+  handleSetInput(val) {
+    this.setState({set:val})
   }
 
   setCefrRange(cMin, cMax) {
@@ -41,10 +47,13 @@ class VocabBox extends Component {
         <SearchBox filterText={this.state.filterText}
                    cefrMin={this.state.cefrMin}
                    cefrMax={this.state.cefrMax}
-                   handleTextInput={this.handleTextInput}/>
+                   set={this.state.set}
+                   handleTextInput={this.handleTextInput}
+                   handleSetInput={this.handleSetInput}/>
         <ResultBox vocab={this.state.vocab}
                    cefrMin={this.state.cefrMin}
                    cefrMax={this.state.cefrMax}
+                   set={this.state.set}
                    filterText={this.state.filterText}/>
       </div>
     )
