@@ -20,12 +20,14 @@ class VocabBox extends Component {
       cefrMin: 'A1',
       cefrMax: 'C2',
       set: '',
+      units: {min:1, max:10},
       books: {min:1, max:10},
       searchMode: true
     }
     this.handleTextInput = this.handleTextInput.bind(this);
     this.handleSetInput  = this.handleSetInput.bind(this);
     this.setBooks        = this.setBooks.bind(this);
+    this.setUnits        = this.setUnits.bind(this);
   }
 
   handleTextInput(val) {
@@ -49,6 +51,12 @@ class VocabBox extends Component {
     })
   }
 
+  setUnits(min,max) {
+    this.setState({
+      units: {min:min, max:max}
+    })
+  }
+
   render() {
     return (
       <div className="VocabBox">
@@ -57,14 +65,17 @@ class VocabBox extends Component {
                    cefrMax={this.state.cefrMax}
                    set={this.state.set}
                    books={this.state.books}
+                   units={this.state.units}
                    handleTextInput={this.handleTextInput}
                    handleSetInput={this.handleSetInput}
-                   setBooks={this.setBooks}/>
+                   setBooks={this.setBooks}
+                   setUnits={this.setUnits}/>
         <ResultBox vocab={this.state.vocab}
                    cefrMin={this.state.cefrMin}
                    cefrMax={this.state.cefrMax}
                    set={this.state.set}
                    books={this.state.books}
+                   units={this.state.units}
                    filterText={this.state.filterText}/>
       </div>
     )

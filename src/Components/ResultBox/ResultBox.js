@@ -18,6 +18,9 @@ class ResultBox extends Component {
       else if (word.book < this.props.books.min || word.book > this.props.books.max) {
         return;
       }
+      else if (word.unit < this.props.units.min || word.unit > this.props.units.max) {
+        return;
+      }
       else {
         rows.push(
           <WordRow word={word} key={keyIndex++}/>

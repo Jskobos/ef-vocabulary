@@ -10,6 +10,8 @@ class SearchBox extends Component {
     this.onSetInputChange    = this.onSetInputChange.bind(this);
     this.onBookMinChange     = this.onBookMinChange.bind(this);
     this.onBookMaxChange     = this.onBookMaxChange.bind(this);
+    this.onUnitMaxChange     = this.onUnitMaxChange.bind(this);
+    this.onUnitMinChange     = this.onUnitMinChange.bind(this);
   }
 
   onFilterInputChange(e) {
@@ -30,6 +32,18 @@ class SearchBox extends Component {
     const max = e.target.value;
     const min = this.props.books.min;
     this.props.setBooks(min,max);
+  }
+
+  onUnitMinChange(e) {
+    const min = e.target.value;
+    const max = this.props.units.max;
+    this.props.setUnits(min,max);
+  }
+
+  onUnitMaxChange(e) {
+    const min = this.props.units.min;
+    const max = e.target.value;
+    this.props.setUnits(min,max);
   }
 
   render() {
@@ -70,6 +84,20 @@ class SearchBox extends Component {
               type="text"
               value={this.props.books.max}
               onChange={this.onBookMaxChange}
+            />
+            <ControlLabel>Units: </ControlLabel>
+            <FormControl
+              className="small-input"
+              type="text"
+              value={this.props.units.min}
+              onChange={this.onUnitMinChange}
+            />
+            <ControlLabel>–</ControlLabel>
+            <FormControl
+              className="small-input"
+              type="text"
+              value={this.props.units.max}
+              onChange={this.onUnitMaxChange}
             />
           </Form>
         </Row>
