@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.LeftNav {
+    width: 20vw;
+    height: 100vh;
+    border-right: solid 1px gray;
+    padding: 1em;
+}
+
+.VocabBox {
+  width: 80vw;
+  height: 100vh;
+}
