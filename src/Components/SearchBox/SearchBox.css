@@ -1,5 +1,4 @@
 .SearchBox {
-  background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 47%,#05abe0 100%);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;

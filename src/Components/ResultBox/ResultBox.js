@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
+import WordRow from '../WordRow/WordRow';
 import './ResultBox.css';
 
 class ResultBox extends Component {
@@ -8,14 +9,12 @@ class ResultBox extends Component {
     let keyIndex = 0;
     this.props.vocab.forEach((word) => {
       if (word.word.indexOf(this.props.filterText) === -1) { return; }
-      else { rows.push(
-        <tr key={keyIndex++}>
-          <td>{word.word}</td>
-          <td>{word.part}</td>
-          <td>{word.book}</td>
-          <td>{word.unit}</td>
-          <td>{word.cefr}</td>
-        </tr>
+      else if (word.cefr < this.props.cefrMin || word.cefr > this.props.cefrMax ) {
+        return;
+      }
+      else {
+        rows.push(
+          <WordRow word={word} key={keyIndex++}/>
       )}
     })
     return(
@@ -25,6 +24,7 @@ class ResultBox extends Component {
             <tr>
               <th></th>
               <th>part of speech</th>
+              <th>lexical set</th>
               <th>book</th>
               <th>unit</th>
               <th>cefr</th>
