@@ -5,13 +5,14 @@ import './SearchBox.css';
 class SearchBox extends Component {
   constructor(props) {
     super(props);
-
     this.onFilterInputChange = this.onFilterInputChange.bind(this);
     this.onSetInputChange    = this.onSetInputChange.bind(this);
     this.onBookMinChange     = this.onBookMinChange.bind(this);
     this.onBookMaxChange     = this.onBookMaxChange.bind(this);
     this.onUnitMaxChange     = this.onUnitMaxChange.bind(this);
     this.onUnitMinChange     = this.onUnitMinChange.bind(this);
+    this.onCefrMinChange     = this.onCefrMinChange.bind(this);
+    this.onCefrMaxChange     = this.onCefrMaxChange.bind(this);
   }
 
   onFilterInputChange(e) {
@@ -44,6 +45,18 @@ class SearchBox extends Component {
     const min = this.props.units.min;
     const max = e.target.value;
     this.props.setUnits(min,max);
+  }
+
+  onCefrMinChange(e) {
+    const min = e.target.value;
+    const max = this.props.cefr.max;
+    this.props.setCefrRange(min,max);
+  }
+
+  onCefrMaxChange(e) {
+    const min = this.props.cefr.min;
+    const max = e.target.value;
+    this.props.setCefrRange(min,max);
   }
 
   render() {
@@ -99,6 +112,29 @@ class SearchBox extends Component {
               value={this.props.units.max}
               onChange={this.onUnitMaxChange}
             />
+            <ControlLabel>CEFR: </ControlLabel>
+            <FormControl componentClass="select"
+              className="small-input"
+              onChange={this.onCefrMinChange}>
+              <option value="0">A1</option>
+              <option value="1">A2</option>
+              <option value="2">B1</option>
+              <option value="3">B2</option>
+              <option value="4">C1</option>
+              <option value="5">C2</option>
+            </FormControl>
+            <ControlLabel>–</ControlLabel>
+            <FormControl componentClass="select"
+              placeholder={this.props.cefr.max}
+              className="small-input"
+              onChange={this.onCefrMaxChange}>
+              <option value="0">A1</option>
+              <option value="1">A2</option>
+              <option value="2">B1</option>
+              <option value="3">B2</option>
+              <option value="4">C1</option>
+              <option value="5">C2</option>
+            </FormControl>
           </Form>
         </Row>
         </Grid>

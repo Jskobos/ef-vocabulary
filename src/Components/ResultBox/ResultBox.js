@@ -21,6 +21,9 @@ class ResultBox extends Component {
       else if (word.unit < this.props.units.min || word.unit > this.props.units.max) {
         return;
       }
+      else if (word.cefr < this.props.cefr.min || word.cefr > this.props.cefr.max) {
+        return;
+      }
       else {
         rows.push(
           <WordRow word={word} key={keyIndex++}/>
