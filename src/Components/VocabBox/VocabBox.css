@@ -1,9 +1,11 @@
+
 .SearchBox {
-  height: 20%;
+  height: 25%;
   width: 100%;
 }
 
 .ResultBox {
-  height: 80%;
-  width: 100%;
+  height: 75%;
+  width: 90%;
+  margin: auto;
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import CefrSelect from '../CefrSelect/CefrSelect';
 import './SearchBox.css';
 
 class SearchBox extends Component {
@@ -113,28 +114,9 @@ class SearchBox extends Component {
               onChange={this.onUnitMaxChange}
             />
             <ControlLabel>CEFR: </ControlLabel>
-            <FormControl componentClass="select"
-              className="small-input"
-              onChange={this.onCefrMinChange}>
-              <option value="0">A1</option>
-              <option value="1">A2</option>
-              <option value="2">B1</option>
-              <option value="3">B2</option>
-              <option value="4">C1</option>
-              <option value="5">C2</option>
-            </FormControl>
+            <CefrSelect onChange={this.onCefrMinChange}/>
             <ControlLabel>–</ControlLabel>
-            <FormControl componentClass="select"
-              placeholder={this.props.cefr.max}
-              className="small-input"
-              onChange={this.onCefrMaxChange}>
-              <option value="0">A1</option>
-              <option value="1">A2</option>
-              <option value="2">B1</option>
-              <option value="3">B2</option>
-              <option value="4">C1</option>
-              <option value="5">C2</option>
-            </FormControl>
+            <CefrSelect onChange={this.onCefrMaxChange}/>
           </Form>
         </Row>
         </Grid>

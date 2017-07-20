@@ -5,10 +5,6 @@
   justify-content: center;
 }
 
-form {
-  width: 80%;
-}
-
 input.form-control.text-search {
   width: 25em;
   margin-right: 1em;
@@ -16,5 +12,10 @@ input.form-control.text-search {
 
 input.form-control.small-input {
   width: 3.0em;
-  margin: 1em;
+  margin: 0.5em;
+}
+
+select.form-control.select-input {
+  width: 5.0em;
+  margin: 0.5em;
 }
