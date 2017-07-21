@@ -6,8 +6,9 @@ class CefrSelect extends Component {
   render() {
     return(
       <FormControl componentClass="select"
-        className="select-input"
+        className="CefrSelect select-input"
         onChange={this.props.onChange}>
+        value={this.props.value}>
         <option value="0">A1</option>
         <option value="1">A2</option>
         <option value="2">B1</option>

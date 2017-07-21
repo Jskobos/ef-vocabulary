@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import CefrSelect from '../CefrSelect/CefrSelect';
+import _ from 'underscore';
 import './SearchBox.css';
 
 class SearchBox extends Component {

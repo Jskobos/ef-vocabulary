@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import WordRow from '../WordRow/WordRow';
+import FormRow from '../FormRow/FormRow';
 import './ResultBox.css';
 
 class ResultBox extends Component {
@@ -40,9 +41,11 @@ class ResultBox extends Component {
               <th>book</th>
               <th>unit</th>
               <th>cefr</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
+            <FormRow addVocabEntry={this.props.addVocabEntry}/>
             {rows}
           </tbody>
         </Table>

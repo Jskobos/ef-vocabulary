@@ -27,6 +27,7 @@ class VocabBox extends Component {
     this.setBooks        = this.setBooks.bind(this);
     this.setUnits        = this.setUnits.bind(this);
     this.setCefrRange    = this.setCefrRange.bind(this);
+    this.addVocabEntry   = this.addVocabEntry.bind(this);
   }
 
   handleTextInput(val) {
@@ -38,14 +39,12 @@ class VocabBox extends Component {
   }
 
   setBooks(min,max) {
-    if (min > max && max !== '') { max = min }
     this.setState({
       books: {min:min, max:max}
     })
   }
 
   setUnits(min,max) {
-    if (min > max && max !== '') { max = min }
     this.setState({
       units: {min:min, max:max}
     })
@@ -54,6 +53,14 @@ class VocabBox extends Component {
   setCefrRange(min,max) {
     this.setState({
       cefr: {min:min, max:max}
+    })
+  }
+
+  addVocabEntry(entry) {
+    let vocab = this.state.vocab.slice();
+    vocab.push(entry);
+    this.setState({
+      vocab:vocab
     })
   }
 
@@ -75,7 +82,8 @@ class VocabBox extends Component {
                    set={this.state.set}
                    books={this.state.books}
                    units={this.state.units}
-                   filterText={this.state.filterText}/>
+                   filterText={this.state.filterText}
+                   addVocabEntry={this.addVocabEntry}/>
       </div>
     )
   }

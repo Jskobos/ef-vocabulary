@@ -1,0 +1,13 @@
+input {
+  text-align: center;
+}
+
+input.row-input {
+  width: 3em;
+  margin: auto;
+}
+
+input.row-input-long {
+  width: 10em;
+  margin: auto;
+}
