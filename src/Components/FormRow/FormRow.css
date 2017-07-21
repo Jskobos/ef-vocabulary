@@ -1,13 +1,11 @@
-input {
-  text-align: center;
-}
-
 input.row-input {
   width: 3em;
   margin: auto;
+  text-align: center;
 }
 
 input.row-input-long {
   width: 10em;
   margin: auto;
+  text-align: center;
 }

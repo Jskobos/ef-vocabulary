@@ -35,7 +35,7 @@ class ResultBox extends Component {
         <Table responsive hover>
           <thead>
             <tr>
-              <th></th>
+              <th>word</th>
               <th>part of speech</th>
               <th>lexical set</th>
               <th>book</th>

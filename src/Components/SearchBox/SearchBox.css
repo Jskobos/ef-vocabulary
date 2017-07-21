@@ -13,6 +13,7 @@ input.form-control.text-search {
 input.form-control.small-input {
   width: 3.0em;
   margin: 0.5em;
+  text-align: center;
 }
 
 select.form-control.select-input {
