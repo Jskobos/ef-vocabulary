@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, Grid, Row, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import CefrSelect from '../CefrSelect/CefrSelect';
 import _ from 'underscore';
 import './SearchBox.css';
@@ -15,6 +15,7 @@ class SearchBox extends Component {
     this.onUnitMinChange     = this.onUnitMinChange.bind(this);
     this.onCefrMinChange     = this.onCefrMinChange.bind(this);
     this.onCefrMaxChange     = this.onCefrMaxChange.bind(this);
+    this.clearAll            = this.clearAll.bind(this);
   }
 
   onFilterInputChange(e) {
@@ -59,6 +60,14 @@ class SearchBox extends Component {
     const min = this.props.cefr.min;
     const max = e.target.value;
     this.props.setCefrRange(min,max);
+  }
+
+  clearAll() {
+    this.props.setCefrRange(0,5);
+    this.props.setUnits(1,10);
+    this.props.setBooks(1,10);
+    this.props.handleTextInput('');
+    this.props.handleSetInput('');
   }
 
   render() {
@@ -118,6 +127,7 @@ class SearchBox extends Component {
             <CefrSelect onChange={this.onCefrMinChange}/>
             <ControlLabel>–</ControlLabel>
             <CefrSelect onChange={this.onCefrMaxChange}/>
+            <Button onClick={this.clearAll} bsStyle="warning">Clear</Button>
           </Form>
         </Row>
         </Grid>
