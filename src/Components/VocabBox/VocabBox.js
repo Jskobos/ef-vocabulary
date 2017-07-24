@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
 import ResultBox from '../ResultBox/ResultBox';
 import SearchBox from '../SearchBox/SearchBox';
+import renderIf from 'render-if';
 import './VocabBox.css';
-
-const vocab = [
-  {'word':'dog','cefr':0,'part':'noun','unit':1,'book':1, 'set':'animals'},
-  {'word':'velociraptor','cefr':3,'part':'noun','unit':3,'book':4,'set':'animals'},
-  {'word':'decide','cefr':2,'part':'verb','unit':2,'book':3,'set':''},
-  {'word':'disappointed','cefr':1,'part':'adjective','unit':5,'book':2,'set':'emotions'}
-]
 
 class VocabBox extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      vocab: vocab,
       filterText: '',
       set: '',
       units: {min:1, max:10},
@@ -65,6 +58,7 @@ class VocabBox extends Component {
   }
 
   render() {
+    console.log(this.props.project.vocab);
     return (
       <div className="VocabBox">
         <SearchBox filterText={this.state.filterText}
@@ -77,13 +71,13 @@ class VocabBox extends Component {
                    setBooks={this.setBooks}
                    setUnits={this.setUnits}
                    setCefrRange={this.setCefrRange}/>
-        <ResultBox vocab={this.state.vocab}
+        {renderIf(this.props.project.vocab)(<ResultBox vocab={this.props.project.vocab}
                    cefr={this.state.cefr}
                    set={this.state.set}
                    books={this.state.books}
                    units={this.state.units}
                    filterText={this.state.filterText}
-                   addVocabEntry={this.addVocabEntry}/>
+                   addVocabEntry={this.addVocabEntry}/>)}
       </div>
     )
   }

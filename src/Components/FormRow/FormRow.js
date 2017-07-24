@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormControl, FormGroup, Button, HelpBlock } from 'react-bootstrap';
+import { FormControl, FormGroup, Button } from 'react-bootstrap';
 import CefrSelect from '../CefrSelect/CefrSelect';
 import './FormRow.css';
 
@@ -66,25 +66,25 @@ class FormRow extends Component {
   }
 
   validateWordField() {
-    if (!this.state.feedback) return '';
+    if (!this.state.feedback) return null;
     else if (this.state.word.length > 0) return 'success';
     else return 'error';
   }
 
   validateUnitField() {
-    if (!this.state.feedback) return '';
+    if (!this.state.feedback) return null;
     else if (this.state.unit.length > 0 && !isNaN(this.state.unit)) return 'success';
     else return 'error';
   }
 
   validateBookField() {
-    if (!this.state.feedback) return '';
+    if (!this.state.feedback) return null;
     else if (this.state.book.length > 0 && !isNaN(this.state.book)) return 'success';
     else return 'error';
   }
 
   validatePartField() {
-    if (!this.state.feedback) return '';
+    if (!this.state.feedback) return null;
     else if (this.state.part.length > 1) return 'success';
     else return 'error';
   }
