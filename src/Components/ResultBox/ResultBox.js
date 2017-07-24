@@ -8,7 +8,8 @@ class ResultBox extends Component {
   render() {
     let rows = [];
     let keyIndex = 0;
-    this.props.vocab.forEach((word) => {
+    for (let w in this.props.vocab) {
+      const word = this.props.vocab[w];
       if (word.word.indexOf(this.props.filterText) === -1) { return; }
       else if (word.cefr < this.props.cefrMin || word.cefr > this.props.cefrMax ) {
         return;
@@ -29,7 +30,7 @@ class ResultBox extends Component {
         rows.push(
           <WordRow word={word} key={keyIndex++}/>
       )}
-    })
+    }
     return(
       <div className="ResultBox">
         <Table responsive hover>

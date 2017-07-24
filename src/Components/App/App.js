@@ -46,7 +46,9 @@ class App extends Component {
   }
 
   handleSelect(i) {
-    this.setState({activeProject: i});
+    this.setState({
+      activeProject: i,
+    });
   }
 
   getActiveProject() {

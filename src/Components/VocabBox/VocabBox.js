@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ResultBox from '../ResultBox/ResultBox';
 import SearchBox from '../SearchBox/SearchBox';
 import renderIf from 'render-if';
+import firebaseApp from '../../firebase';
 import './VocabBox.css';
 
 class VocabBox extends Component {
@@ -13,14 +14,22 @@ class VocabBox extends Component {
       set: '',
       units: {min:1, max:10},
       books: {min:1, max:10},
-      cefr:  {min:0,max:5}
+      cefr:  {min:0,max:5},
+      vocab: this.props.project.vocab
     }
+
     this.handleTextInput = this.handleTextInput.bind(this);
     this.handleSetInput  = this.handleSetInput.bind(this);
     this.setBooks        = this.setBooks.bind(this);
     this.setUnits        = this.setUnits.bind(this);
     this.setCefrRange    = this.setCefrRange.bind(this);
     this.addVocabEntry   = this.addVocabEntry.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      vocab: nextProps.project.vocab
+    })
   }
 
   handleTextInput(val) {
@@ -50,15 +59,18 @@ class VocabBox extends Component {
   }
 
   addVocabEntry(entry) {
-    let vocab = this.state.vocab.slice();
-    vocab.push(entry);
-    this.setState({
-      vocab:vocab
-    })
+    const vocabRef = firebaseApp.database().ref('/projects/' + this.props.project.key + '/vocab');
+    const newEntry = vocabRef.push(entry).then((key) => {
+      let vocab = JSON.parse(JSON.stringify(this.state.vocab));
+      vocab[key] = entry;
+      this.setState({
+        vocab:vocab
+      });
+    });
+
   }
 
   render() {
-    console.log(this.props.project.vocab);
     return (
       <div className="VocabBox">
         <SearchBox filterText={this.state.filterText}
@@ -71,7 +83,7 @@ class VocabBox extends Component {
                    setBooks={this.setBooks}
                    setUnits={this.setUnits}
                    setCefrRange={this.setCefrRange}/>
-        {renderIf(this.props.project.vocab)(<ResultBox vocab={this.props.project.vocab}
+        {renderIf(this.props.project.vocab)(<ResultBox vocab={this.state.vocab}
                    cefr={this.state.cefr}
                    set={this.state.set}
                    books={this.state.books}

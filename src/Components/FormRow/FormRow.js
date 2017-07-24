@@ -22,7 +22,6 @@ class FormRow extends Component {
 
   handleChange(e) {
     const name = e.target.name;
-    console.log(name + ' : ' + e.target.value);
     switch(name) {
       case 'word': this.setState({ word: e.target.value }); break;
       case 'set' : this.setState({ set:  e.target.value }); break;
@@ -101,7 +100,7 @@ class FormRow extends Component {
           </td>
           <td>
             <FormGroup validationState={this.validatePartField()}>
-              <FormControl name="part" className="row-input-long" type="text" value={this.state.part}
+              <FormControl name="part" className="row-input-med" type="text" value={this.state.part}
                 onChange={this.handleChange} />
             </FormGroup>
           </td>
