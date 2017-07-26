@@ -38,10 +38,11 @@ class FormRow extends Component {
       this.setState({feedback:true});
       return;
     }
+    const tags = this.state.set.split(',');
     const entry = {
       word: this.state.word,
       part: this.state.part,
-      set: this.state.set,
+      tags: tags,
       book: this.state.book,
       unit: this.state.unit,
       cefr: this.state.cefr

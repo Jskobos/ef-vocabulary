@@ -8,6 +8,11 @@
 input.form-control.text-search {
   width: 25em;
   margin-right: 1em;
+  text-align: left;
+}
+
+input.form-control.tag-input {
+  text-align: left;
 }
 
 input.form-control.small-input {

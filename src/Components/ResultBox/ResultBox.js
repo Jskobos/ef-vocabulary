@@ -5,28 +5,51 @@ import FormRow from '../FormRow/FormRow';
 import './ResultBox.css';
 
 class ResultBox extends Component {
+  constructor(props) {
+    super(props);
+    this.getTags    = this.getTags.bind(this);
+    this.filterWord = this.filterWord.bind(this);
+  }
+
+  getTags(word) {
+    let tags = [];
+    for (let tag in word.tags) {
+      tags.push(word.tags[tag]);
+    }
+    tags = tags.join(', ');
+  }
+
+  filterWord(word) {
+    const tags = this.getTags(word);
+    if (word.word.indexOf(this.props.filterText) === -1) {
+      return false;
+    }
+    else if (word.cefr < this.props.cefrMin || word.cefr > this.props.cefrMax ) {
+      return false;
+    }
+    else if (this.props.set.length > 1 && tags.indexOf(this.props.set) === -1) {
+      return false;
+    }
+    else if (word.book < this.props.books.min || word.book > this.props.books.max) {
+      return false;
+    }
+    else if (word.unit < this.props.units.min || word.unit > this.props.units.max) {
+      return false;
+    }
+    else if (word.cefr < this.props.cefr.min || word.cefr > this.props.cefr.max) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
   render() {
     let rows = [];
     let keyIndex = 0;
     for (let w in this.props.vocab) {
       const word = this.props.vocab[w];
-      if (word.word.indexOf(this.props.filterText) === -1) { return; }
-      else if (word.cefr < this.props.cefrMin || word.cefr > this.props.cefrMax ) {
-        return;
-      }
-      else if (this.props.set.length > 1 && word.set.indexOf(this.props.set) === -1) {
-        return;
-      }
-      else if (word.book < this.props.books.min || word.book > this.props.books.max) {
-        return;
-      }
-      else if (word.unit < this.props.units.min || word.unit > this.props.units.max) {
-        return;
-      }
-      else if (word.cefr < this.props.cefr.min || word.cefr > this.props.cefr.max) {
-        return;
-      }
-      else {
+      if (this.filterWord(word)) {
         rows.push(
           <WordRow word={word} key={keyIndex++}/>
       )}
@@ -38,7 +61,7 @@ class ResultBox extends Component {
             <tr>
               <th>word</th>
               <th>part of speech</th>
-              <th>lexical set</th>
+              <th>tags</th>
               <th>book</th>
               <th>unit</th>
               <th>cefr</th>

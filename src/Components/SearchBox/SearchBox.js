@@ -85,6 +85,7 @@ class SearchBox extends Component {
               />
               <FormControl
                 type="text"
+                className="tag-input"
                 value={this.props.set}
                 placeholder="Tags"
                 onChange={this.onSetInputChange}

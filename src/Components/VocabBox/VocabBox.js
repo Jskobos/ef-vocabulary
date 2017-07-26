@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ResultBox from '../ResultBox/ResultBox';
 import SearchBox from '../SearchBox/SearchBox';
-import renderIf from 'render-if';
 import firebaseApp from '../../firebase';
 import './VocabBox.css';
 
@@ -60,7 +59,7 @@ class VocabBox extends Component {
 
   addVocabEntry(entry) {
     const vocabRef = firebaseApp.database().ref('/projects/' + this.props.project.key + '/vocab');
-    const newEntry = vocabRef.push(entry).then((key) => {
+    vocabRef.push(entry).then((key) => {
       let vocab = JSON.parse(JSON.stringify(this.state.vocab));
       vocab[key] = entry;
       this.setState({
@@ -83,13 +82,13 @@ class VocabBox extends Component {
                    setBooks={this.setBooks}
                    setUnits={this.setUnits}
                    setCefrRange={this.setCefrRange}/>
-        {renderIf(this.props.project.vocab)(<ResultBox vocab={this.state.vocab}
+        <ResultBox vocab={this.state.vocab}
                    cefr={this.state.cefr}
                    set={this.state.set}
                    books={this.state.books}
                    units={this.state.units}
                    filterText={this.state.filterText}
-                   addVocabEntry={this.addVocabEntry}/>)}
+                   addVocabEntry={this.addVocabEntry}/>
       </div>
     )
   }
