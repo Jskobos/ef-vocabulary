@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import VocabBox from './VocabBox';
-
+import NewProjectForm from './NewProjectForm';
 
 const project = {
-  vocab: {
-    0: {
-      word: 'hello',
-    }
-  }
+  name: 'hello',
+  books: 10,
+  units: 10
 }
+
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<VocabBox project={project}/>, div);
+  ReactDOM.render(<NewProjectForm project={project}/>, div);
 });

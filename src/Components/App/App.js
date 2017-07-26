@@ -13,8 +13,9 @@ class App extends Component {
       activeProject: 'Trailblazers',
       projects: []
     }
-    this.getActiveProject = this.getActiveProject.bind(this);
-    this.handleSelect     = this.handleSelect.bind(this);
+    this.getActiveProject    = this.getActiveProject.bind(this);
+    this.handleSelect        = this.handleSelect.bind(this);
+    this.setActiveProject    = this.setActiveProject.bind(this);
   }
 
   listenForProjects(ref) {
@@ -46,6 +47,9 @@ class App extends Component {
   }
 
   handleSelect(i) {
+    if (i === 'newProject') {
+      alert('create new project');
+    }
     this.setState({
       activeProject: i,
     });
@@ -54,9 +58,16 @@ class App extends Component {
   getActiveProject() {
     const projects = this.state.projects.slice();
     for (let project in projects) {
+      if (this.state.activeProject === 'newProject') { return {}; }
       if (projects[project].key === this.state.activeProject) { return projects[project]; }
     }
     return {};
+  }
+
+  setActiveProject(project) {
+    this.setState({
+      activeProject: project
+    });
   }
 
   render() {

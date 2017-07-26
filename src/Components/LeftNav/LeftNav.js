@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import { Nav, NavItem } from 'react-bootstrap';
+import { Nav, NavItem, Glyphicon } from 'react-bootstrap';
+import NewProject from '../NewProject/NewProject';
 import './LeftNav.css';
 
 class LeftNav extends Component {
   render() {
     let tabs = [];
-    //for (let k in this.props.projects) {
-      //const project = this.props.projects[k]
-      //tabs.push(<NavItem key={k} eventKey={k}>{project.name}</NavItem>)
-    //}
     this.props.projects.forEach((project) => {
       tabs.push(<NavItem key={project.key} eventKey={project.key}>{project.name}</NavItem>)
     })
@@ -18,7 +15,11 @@ class LeftNav extends Component {
              activeKey={this.props.activeProject}
              onSelect={(i) => this.props.onSelect(i)}>
             {tabs}
+            <NavItem className="newProject" key={'newProject'} eventKey={'newProject'}>
+              <Glyphicon glyph="plus-sign"/> New Project
+            </NavItem>
         </Nav>
+        <NewProject setActiveProject={this.props.setActiveProject}/>
       </div>
     );
   }

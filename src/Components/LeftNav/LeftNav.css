@@ -1,1 +1,15 @@
+.LeftNav {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
 
+div.LeftNav > ul.nav > li.newProject > a {
+  color: black;
+  opacity: 0.6;
+
+}
+
+div.LeftNav > ul.nav > li.newProject.active > a {
+  background-color: rgba(0,0,0,0.1);
+}

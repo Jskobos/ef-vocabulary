@@ -16,7 +16,7 @@ class ResultBox extends Component {
     for (let tag in word.tags) {
       tags.push(word.tags[tag]);
     }
-    tags = tags.join(', ');
+    return tags.join(', ');
   }
 
   filterWord(word) {
