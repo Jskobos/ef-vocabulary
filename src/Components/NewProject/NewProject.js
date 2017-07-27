@@ -29,15 +29,14 @@ class NewProject extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('submitting new project form');
     // Validate project
 
     // Push new project to Firebase
-    this.projRef.push(this.state.project);
-
-    // Set active project to the new project
-    //this.props.setActiveProject(newProject);
-
+    this.projRef.push(this.state.project)
+        .then((newProject) => {
+          // Set active project to the new project
+          this.props.setActiveProject(newProject.getKey());
+        });
     // Clear the form.
     this.setState({
       project: {

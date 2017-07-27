@@ -47,9 +47,6 @@ class App extends Component {
   }
 
   handleSelect(i) {
-    if (i === 'newProject') {
-      alert('create new project');
-    }
     this.setState({
       activeProject: i,
     });
@@ -75,7 +72,8 @@ class App extends Component {
       <div className="App">
         <LeftNav projects={this.state.projects}
                  onSelect={(i) => this.handleSelect(i)}
-                 activeProject={this.state.activeProject}/>
+                 activeProject={this.state.activeProject}
+                 setActiveProject={this.setActiveProject}/>
         <VocabBox project={this.getActiveProject()}/>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, Glyphicon } from 'react-bootstrap';
 import NewProject from '../NewProject/NewProject';
+import renderIf from 'render-if';
 import './LeftNav.css';
 
 class LeftNav extends Component {
@@ -19,7 +20,9 @@ class LeftNav extends Component {
               <Glyphicon glyph="plus-sign"/> New Project
             </NavItem>
         </Nav>
-        <NewProject setActiveProject={this.props.setActiveProject}/>
+        {renderIf(this.props.activeProject === 'newProject')
+          (<NewProject setActiveProject={this.props.setActiveProject}/>)
+        }
       </div>
     );
   }
