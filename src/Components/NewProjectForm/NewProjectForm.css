@@ -7,4 +7,5 @@
 .NewProjectForm > form > input {
   margin: 0.5em 0;
   text-align: left;
+  background-color: white;
 }

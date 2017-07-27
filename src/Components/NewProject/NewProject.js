@@ -16,6 +16,7 @@ class NewProject extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.projRef      = firebaseApp.database().ref('/projects');
   }
 
   handleChange(e) {
@@ -26,12 +27,26 @@ class NewProject extends Component {
     });
   }
 
-  handleSubmit() {
-    alert('submitting!!!!!');
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('submitting new project form');
     // Validate project
+
     // Push new project to Firebase
+    this.projRef.push(this.state.project);
+
     // Set active project to the new project
-    //this.props.updateProjects(this.state.projects);
+    //this.props.setActiveProject(newProject);
+
+    // Clear the form.
+    this.setState({
+      project: {
+        name: '',
+        books: '',
+        units: '',
+        vocab: {}
+      }
+    });
   }
 
   render() {

@@ -2,12 +2,12 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
+  background: rgba(0,0,0,0.08)
 }
 
 div.LeftNav > ul.nav > li.newProject > a {
   color: black;
   opacity: 0.6;
-
 }
 
 div.LeftNav > ul.nav > li.newProject.active > a {

@@ -95,27 +95,54 @@ class FormRow extends Component {
       <tr className="FormRow">
           <td>
             <FormGroup validationState={this.validateWordField()}>
-              <FormControl name="word" className="row-input-long" type="text" value={this.state.word}
-                onChange={this.handleChange} />
+              <FormControl
+                name="word"
+                className="row-input-long"
+                type="text"
+                value={this.state.word}
+                onChange={this.handleChange}
+              />
             </FormGroup>
           </td>
           <td>
             <FormGroup validationState={this.validatePartField()}>
-              <FormControl name="part" className="row-input-med" type="text" value={this.state.part}
-                onChange={this.handleChange} />
+              <FormControl
+                name="part"
+                className="row-input-med"
+                type="text"
+                value={this.state.part}
+                onChange={this.handleChange}
+              />
             </FormGroup>
           </td>
-          <td><FormControl name="set" className="row-input-long" type="text" value={this.state.set} onChange={this.handleChange}/></td>
+          <td><FormControl
+                name="set"
+                className="row-input-long"
+                type="text"
+                value={this.state.set}
+                onChange={this.handleChange}
+              />
+          </td>
           <td>
             <FormGroup validationState={this.validateBookField()}>
-              <FormControl name="book" className="row-input" type="text" value={this.state.book}
-                onChange={this.handleChange} />
+              <FormControl
+                name="book"
+                className="row-input"
+                type="text"
+                value={this.state.book}
+                onChange={this.handleChange}
+              />
             </FormGroup>
           </td>
           <td>
             <FormGroup validationState={this.validateUnitField()}>
-              <FormControl name="unit" className="row-input" type="text" value={this.state.unit}
-                onChange={this.handleChange}/>
+              <FormControl
+                name="unit"
+                className="row-input"
+                type="text"
+                value={this.state.unit}
+                onChange={this.handleChange}
+              />
             </FormGroup>
           </td>
           <td><CefrSelect onChange={this.handleChange} value={this.state.cefr}/></td>
