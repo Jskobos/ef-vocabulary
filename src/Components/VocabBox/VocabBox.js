@@ -60,14 +60,7 @@ class VocabBox extends Component {
 
   addVocabEntry(entry) {
     const vocabRef = firebase.database().ref('/projects/' + this.props.project.key + '/vocab');
-    vocabRef.push(entry).then((key) => {
-      let vocab = JSON.parse(JSON.stringify(this.state.vocab));
-      vocab[key] = entry;
-      this.setState({
-        vocab:vocab
-      });
-    });
-
+    vocabRef.push(entry)
   }
 
   deleteVocabEntry(wordID) {
