@@ -17,12 +17,13 @@ class VocabBox extends Component {
       vocab: this.props.project.vocab
     }
 
-    this.handleTextInput = this.handleTextInput.bind(this);
-    this.handleSetInput  = this.handleSetInput.bind(this);
-    this.setBooks        = this.setBooks.bind(this);
-    this.setUnits        = this.setUnits.bind(this);
-    this.setCefrRange    = this.setCefrRange.bind(this);
-    this.addVocabEntry   = this.addVocabEntry.bind(this);
+    this.handleTextInput  = this.handleTextInput.bind(this);
+    this.handleSetInput   = this.handleSetInput.bind(this);
+    this.setBooks         = this.setBooks.bind(this);
+    this.setUnits         = this.setUnits.bind(this);
+    this.setCefrRange     = this.setCefrRange.bind(this);
+    this.addVocabEntry    = this.addVocabEntry.bind(this);
+    this.deleteVocabEntry = this.deleteVocabEntry.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -69,6 +70,11 @@ class VocabBox extends Component {
 
   }
 
+  deleteVocabEntry(wordID) {
+    const wordRef = firebase.database().ref('/projects/' + this.props.project.key + '/vocab/' + wordID);
+    wordRef.remove().then(() => console.log(`Database entry ${wordID} removed.`));
+  }
+
   render() {
     return (
       <div className="VocabBox">
@@ -88,7 +94,8 @@ class VocabBox extends Component {
                    books={this.state.books}
                    units={this.state.units}
                    filterText={this.state.filterText}
-                   addVocabEntry={this.addVocabEntry}/>
+                   addVocabEntry={this.addVocabEntry}
+                   deleteVocabEntry={this.deleteVocabEntry}/>
       </div>
     )
   }

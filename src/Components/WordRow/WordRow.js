@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Glyphicon } from 'react-bootstrap';
 import './WordRow.css';
 
 const cefrLabels = ['A1','A2','B1','B2','C1','C2'];
@@ -15,6 +16,7 @@ class WordRow extends Component {
           <td>{word.book}</td>
           <td>{word.unit}</td>
           <td>{cefrLabels[word.cefr]}</td>
+          <td><Glyphicon onClick={() => this.props.deleteVocabEntry(this.props.wid)} className="delete-icon" glyph="remove"/></td>
         </tr>
   )}
 }

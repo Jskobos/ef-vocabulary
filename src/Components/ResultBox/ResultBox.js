@@ -51,7 +51,7 @@ class ResultBox extends Component {
       const word = this.props.vocab[w];
       if (this.filterWord(word)) {
         rows.push(
-          <WordRow word={word} key={keyIndex++}/>
+          <WordRow word={word} wid={w} deleteVocabEntry={this.props.deleteVocabEntry} key={keyIndex++}/>
       )}
     }
     return(

@@ -1,0 +1,7 @@
+.WordRow .delete-icon {
+  opacity: 0;
+}
+
+.WordRow:hover .delete-icon {
+  opacity: 1;
+}
