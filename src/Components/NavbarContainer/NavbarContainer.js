@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import firebase from '../../firebase';
 
 import './NavbarContainer.css';
@@ -16,9 +16,10 @@ class NavbarContainer extends Component {
 
   render() {
     return(
-      <Navbar className="NavBar">
-        <span>Welcome { this.props.user }</span>
-      </Navbar>
+      <div className="Navbar">
+        <div className="display-name nav-item">{this.props.user}</div>
+        <Button className="nav-item" bsStyle="primary" onClick={this.signOut}>Sign Out</Button>
+      </div>
     )
   }
 }

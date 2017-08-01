@@ -13,7 +13,6 @@ class App extends Component {
     super()
     this.projectsRef = firebaseApp.database().ref();
     this.state = {
-      user: null,
       activeProject: 'Trailblazers',
       projects: []
     }
@@ -21,6 +20,11 @@ class App extends Component {
     this.handleSelect        = this.handleSelect.bind(this);
     this.setActiveProject    = this.setActiveProject.bind(this);
     this.listenForAuth       = this.listenForAuth.bind(this);
+  }
+
+  getInitialState() {
+    const user = firebaseApp.auth().currentUser;
+    return { user: user ? user.email : null}
   }
 
   listenForProjects(ref) {

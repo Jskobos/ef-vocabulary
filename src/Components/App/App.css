@@ -6,6 +6,23 @@
   align-items: center;
 }
 
+.Navbar {
+  height: 10vh;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: solid 1px rgba(0,0,0,0.1);
+}
+
+.Navbar .nav-item {
+  margin: 1em;
+}
+
+.Navbar .display-name {
+  font-size: 1.2em;
+}
+
 .LeftNav {
     width: 20vw;
     height: 90vh;
