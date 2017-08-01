@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebaseApp from '../../firebase';
+import firebase from '../../firebase';
 import NewProjectForm from '../NewProjectForm/NewProjectForm';
 
 class NewProject extends Component {
@@ -16,7 +16,7 @@ class NewProject extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.projRef      = firebaseApp.database().ref('/projects');
+    this.projRef      = firebase.database().ref('/projects');
   }
 
   handleChange(e) {

@@ -1858,7 +1858,7 @@ Now, after you create a production build with `npm run build`, you can deploy it
     ✔  Deploy complete!
 
     Project Console: https://console.firebase.google.com/project/example-app-fd690/overview
-    Hosting URL: https://example-app-fd690.firebaseapp.com
+    Hosting URL: https://example-app-fd690.firebase.com
 ```
 
 For more information see [Add Firebase to your JavaScript Project](https://firebase.google.com/docs/web/setup).

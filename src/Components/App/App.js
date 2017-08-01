@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import LoginModal from '../LoginModal/LoginModal';
+import NavbarContainer from '../NavbarContainer/NavbarContainer';
 import LeftNav from '../LeftNav/LeftNav';
 import VocabBox from '../VocabBox/VocabBox';
 import firebaseApp from '../../firebase';
+import renderIf from 'render-if';
+
 import './App.css';
 
 class App extends Component {
@@ -9,19 +13,21 @@ class App extends Component {
     super()
     this.projectsRef = firebaseApp.database().ref();
     this.state = {
-      isAuthenticated: true,
+      user: null,
       activeProject: 'Trailblazers',
       projects: []
     }
     this.getActiveProject    = this.getActiveProject.bind(this);
     this.handleSelect        = this.handleSelect.bind(this);
     this.setActiveProject    = this.setActiveProject.bind(this);
+    this.listenForAuth       = this.listenForAuth.bind(this);
   }
 
   listenForProjects(ref) {
-    const items=[];
+    let items=[];
     ref.on('value', (snap) => {
       snap.forEach((child) => {
+        items = []
         const project = child.val();
         for (let item in project) {
           const course = project[item];
@@ -39,11 +45,26 @@ class App extends Component {
         projects: items
       });
 
-    })
+    });
+  }
+
+  listenForAuth() {
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in.
+        this.setState({
+          user: user.displayName || user.email
+        });
+      }
+      else {
+        this.setState({user:null});
+      }
+    });
   }
 
   componentDidMount() {
     this.listenForProjects(this.projectsRef);
+    this.listenForAuth();
   }
 
   handleSelect(i) {
@@ -70,11 +91,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LeftNav projects={this.state.projects}
-                 onSelect={(i) => this.handleSelect(i)}
-                 activeProject={this.state.activeProject}
-                 setActiveProject={this.setActiveProject}/>
-        <VocabBox project={this.getActiveProject()}/>
+        {renderIf(this.state.user === null)(<LoginModal user={this.state.user}/>)}
+        <NavbarContainer user={this.state.user}/>
+        <div className="main-box">
+          <LeftNav projects={this.state.projects}
+                   onSelect={(i) => this.handleSelect(i)}
+                   activeProject={this.state.activeProject}
+                   setActiveProject={this.setActiveProject}/>
+          <VocabBox project={this.getActiveProject()}/>
+        </div>
       </div>
     );
   }

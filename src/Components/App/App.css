@@ -1,4 +1,4 @@
-.App {
+.App > .main-box {
   text-align: center;
   display: flex;
   flex-flow: row nowrap;
@@ -8,12 +8,12 @@
 
 .LeftNav {
     width: 20vw;
-    height: 100vh;
+    height: 90vh;
     border-right: solid 1px rgba(0,0,0,0.1);
     padding: 1em;
 }
 
 .VocabBox {
   width: 80vw;
-  height: 100vh;
+  height: 90vh;
 }

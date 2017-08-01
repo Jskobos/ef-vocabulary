@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ResultBox from '../ResultBox/ResultBox';
 import SearchBox from '../SearchBox/SearchBox';
-import firebaseApp from '../../firebase';
+import firebase from '../../firebase';
 import './VocabBox.css';
 
 class VocabBox extends Component {
@@ -58,7 +58,7 @@ class VocabBox extends Component {
   }
 
   addVocabEntry(entry) {
-    const vocabRef = firebaseApp.database().ref('/projects/' + this.props.project.key + '/vocab');
+    const vocabRef = firebase.database().ref('/projects/' + this.props.project.key + '/vocab');
     vocabRef.push(entry).then((key) => {
       let vocab = JSON.parse(JSON.stringify(this.state.vocab));
       vocab[key] = entry;
