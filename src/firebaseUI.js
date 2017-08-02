@@ -1,4 +1,3 @@
-import * as firebase from 'firebase';
 import firebaseui from 'firebaseui';
 import firebaseApp from './firebase';
 

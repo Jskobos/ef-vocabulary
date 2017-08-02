@@ -13,11 +13,9 @@ class App extends Component {
     super()
     this.projectsRef = firebaseApp.database().ref();
     this.state = {
-      activeProject: 'Trailblazers',
       projects: []
     }
     this.getActiveProject    = this.getActiveProject.bind(this);
-    this.handleSelect        = this.handleSelect.bind(this);
     this.setActiveProject    = this.setActiveProject.bind(this);
     this.listenForAuth       = this.listenForAuth.bind(this);
   }
@@ -71,12 +69,6 @@ class App extends Component {
     this.listenForAuth();
   }
 
-  handleSelect(i) {
-    this.setState({
-      activeProject: i,
-    });
-  }
-
   getActiveProject() {
     const projects = this.state.projects.slice();
     for (let project in projects) {
@@ -99,7 +91,7 @@ class App extends Component {
         <NavbarContainer user={this.state.user}/>
         <div className="main-box">
           <LeftNav projects={this.state.projects}
-                   onSelect={(i) => this.handleSelect(i)}
+                   onSelect={(i) => this.setActiveProject(i)}
                    activeProject={this.state.activeProject}
                    setActiveProject={this.setActiveProject}/>
           <VocabBox project={this.getActiveProject()}/>

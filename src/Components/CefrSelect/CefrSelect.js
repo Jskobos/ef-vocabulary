@@ -7,6 +7,7 @@ class CefrSelect extends Component {
     return(
       <FormControl componentClass="select"
         className="CefrSelect select-input"
+        name="cefr"
         onChange={this.props.onChange}>
         value={this.props.value}>
         <option value="0">A1</option>

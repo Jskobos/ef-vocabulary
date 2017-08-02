@@ -8,12 +8,8 @@ class SearchBox extends Component {
     super(props);
     this.onFilterInputChange = this.onFilterInputChange.bind(this);
     this.onSetInputChange    = this.onSetInputChange.bind(this);
-    this.onBookMinChange     = this.onBookMinChange.bind(this);
-    this.onBookMaxChange     = this.onBookMaxChange.bind(this);
-    this.onUnitMaxChange     = this.onUnitMaxChange.bind(this);
-    this.onUnitMinChange     = this.onUnitMinChange.bind(this);
-    this.onCefrMinChange     = this.onCefrMinChange.bind(this);
-    this.onCefrMaxChange     = this.onCefrMaxChange.bind(this);
+    this.onMinChange         = this.onMinChange.bind(this);
+    this.onMaxChange         = this.onMaxChange.bind(this);
     this.clearAll            = this.clearAll.bind(this);
   }
 
@@ -25,46 +21,25 @@ class SearchBox extends Component {
     this.props.handleSetInput(e.target.value);
   }
 
-  onBookMinChange(e) {
-    const min = e.target.value;
-    const max = this.props.books.max;
-    this.props.setBooks(min,max);
+  onMinChange(e) {
+    const name = e.target.name;
+    const min = Number(e.target.value);
+    const max = this.props[name]['max'];
+    this.props.setMinMax(name,min,max);
   }
 
-  onBookMaxChange(e) {
-    const max = e.target.value;
-    const min = this.props.books.min;
-    this.props.setBooks(min,max);
-  }
-
-  onUnitMinChange(e) {
-    const min = e.target.value;
-    const max = this.props.units.max;
-    this.props.setUnits(min,max);
-  }
-
-  onUnitMaxChange(e) {
-    const min = this.props.units.min;
-    const max = e.target.value;
-    this.props.setUnits(min,max);
-  }
-
-  onCefrMinChange(e) {
-    const min = e.target.value;
-    const max = this.props.cefr.max;
-    this.props.setCefrRange(min,max);
-  }
-
-  onCefrMaxChange(e) {
-    const min = this.props.cefr.min;
-    const max = e.target.value;
-    this.props.setCefrRange(min,max);
+  onMaxChange(e) {
+    const name = e.target.name;
+    const min = this.props[name]['min'];
+    const max = Number(e.target.value);
+    console.log(max);
+    this.props.setMinMax(name,min,max);
   }
 
   clearAll() {
-    this.props.setCefrRange(0,5);
-    this.props.setUnits(1,10);
-    this.props.setBooks(1,10);
+    this.props.setMinMax('cefr',0,5);
+    this.props.setMinMax('units',1,10);
+    this.props.setMinMax('books',1,10);
     this.props.handleTextInput('');
     this.props.handleSetInput('');
   }
@@ -98,35 +73,39 @@ class SearchBox extends Component {
             <ControlLabel>Books: </ControlLabel>
             <FormControl
               className="small-input"
+              name="books"
               type="text"
               value={this.props.books.min}
-              onChange={this.onBookMinChange}
+              onChange={this.onMinChange}
             />
             <ControlLabel>–</ControlLabel>
             <FormControl
               className="small-input"
+              name="books"
               type="text"
               value={this.props.books.max}
-              onChange={this.onBookMaxChange}
+              onChange={this.onMaxChange}
             />
             <ControlLabel>Units: </ControlLabel>
             <FormControl
               className="small-input"
               type="text"
+              name="units"
               value={this.props.units.min}
-              onChange={this.onUnitMinChange}
+              onChange={this.onMinChange}
             />
             <ControlLabel>–</ControlLabel>
             <FormControl
               className="small-input"
               type="text"
+              name="units"
               value={this.props.units.max}
-              onChange={this.onUnitMaxChange}
+              onChange={this.onMaxChange}
             />
             <ControlLabel>CEFR: </ControlLabel>
-            <CefrSelect onChange={this.onCefrMinChange}/>
+            <CefrSelect onChange={this.onMinChange}/>
             <ControlLabel>–</ControlLabel>
-            <CefrSelect onChange={this.onCefrMaxChange}/>
+            <CefrSelect onChange={this.onMaxChange}/>
             <Button onClick={this.clearAll} bsStyle="warning">Clear</Button>
           </Form>
         </Row>

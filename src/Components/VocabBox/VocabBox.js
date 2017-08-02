@@ -19,11 +19,9 @@ class VocabBox extends Component {
 
     this.handleTextInput  = this.handleTextInput.bind(this);
     this.handleSetInput   = this.handleSetInput.bind(this);
-    this.setBooks         = this.setBooks.bind(this);
-    this.setUnits         = this.setUnits.bind(this);
-    this.setCefrRange     = this.setCefrRange.bind(this);
     this.addVocabEntry    = this.addVocabEntry.bind(this);
     this.deleteVocabEntry = this.deleteVocabEntry.bind(this);
+    this.setMinMax        = this.setMinMax.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,27 +38,15 @@ class VocabBox extends Component {
     this.setState({set:val})
   }
 
-  setBooks(min,max) {
+  setMinMax(target,min,max) {
     this.setState({
-      books: {min:min, max:max}
-    })
-  }
-
-  setUnits(min,max) {
-    this.setState({
-      units: {min:min, max:max}
-    })
-  }
-
-  setCefrRange(min,max) {
-    this.setState({
-      cefr: {min:min, max:max}
-    })
+      [target]: {min:min, max:max}
+    });
   }
 
   addVocabEntry(entry) {
     const vocabRef = firebase.database().ref('/projects/' + this.props.project.key + '/vocab');
-    vocabRef.push(entry)
+    vocabRef.push(entry);
   }
 
   deleteVocabEntry(wordID) {
@@ -78,9 +64,7 @@ class VocabBox extends Component {
                    units={this.state.units}
                    handleTextInput={this.handleTextInput}
                    handleSetInput={this.handleSetInput}
-                   setBooks={this.setBooks}
-                   setUnits={this.setUnits}
-                   setCefrRange={this.setCefrRange}/>
+                   setMinMax={this.setMinMax}/>
         <ResultBox vocab={this.state.vocab}
                    cefr={this.state.cefr}
                    set={this.state.set}

@@ -20,9 +20,7 @@ class LeftNav extends Component {
               <Glyphicon glyph="plus-sign"/> New Project
             </NavItem>
         </Nav>
-        {renderIf(this.props.activeProject === 'newProject')
-          (<NewProject setActiveProject={this.props.setActiveProject}/>)
-        }
+        {renderIf(this.props.activeProject === 'newProject') (<NewProject setActiveProject={this.props.setActiveProject}/>)}
       </div>
     );
   }
