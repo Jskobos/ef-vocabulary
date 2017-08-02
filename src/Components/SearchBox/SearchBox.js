@@ -32,7 +32,6 @@ class SearchBox extends Component {
     const name = e.target.name;
     const min = this.props[name]['min'];
     const max = Number(e.target.value);
-    console.log(max);
     this.props.setMinMax(name,min,max);
   }
 

@@ -44,15 +44,29 @@ class ResultBox extends Component {
     }
   }
 
+  sortBy(wordArray, sortKey) {
+    const sortedArray = wordArray.sort((a,b) => {
+      return a[sortKey] > b[sortKey];
+    });
+    return sortedArray;
+  }
+
   render() {
+    let words = [];
     let rows = [];
     let keyIndex = 0;
     for (let w in this.props.vocab) {
       const word = this.props.vocab[w];
       if (this.filterWord(word)) {
-        rows.push(
-          <WordRow word={word} wid={w} deleteVocabEntry={this.props.deleteVocabEntry} key={keyIndex++}/>
-      )}
+        words.push(word);
+      }
+    }
+    words = this.sortBy(words,this.props.sortKey);
+    for (let w in words) {
+      const word = words[w];
+      rows.push(
+        <WordRow word={word} wid={w} deleteVocabEntry={this.props.deleteVocabEntry} key={keyIndex++}/>
+      )
     }
     return(
       <div className="ResultBox">

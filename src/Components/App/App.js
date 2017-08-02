@@ -12,9 +12,7 @@ class App extends Component {
   constructor() {
     super()
     this.projectsRef = firebaseApp.database().ref();
-    this.state = {
-      projects: []
-    }
+    this.state = { projects: [] }
     this.getActiveProject    = this.getActiveProject.bind(this);
     this.setActiveProject    = this.setActiveProject.bind(this);
     this.listenForAuth       = this.listenForAuth.bind(this);

@@ -14,7 +14,8 @@ class VocabBox extends Component {
       units: {min:1, max:10},
       books: {min:1, max:10},
       cefr:  {min:0,max:5},
-      vocab: this.props.project.vocab
+      vocab: this.props.project.vocab,
+      sortKey: 'word'
     }
 
     this.handleTextInput  = this.handleTextInput.bind(this);
@@ -71,6 +72,7 @@ class VocabBox extends Component {
                    books={this.state.books}
                    units={this.state.units}
                    filterText={this.state.filterText}
+                   sortKey={this.state.sortKey}
                    addVocabEntry={this.addVocabEntry}
                    deleteVocabEntry={this.deleteVocabEntry}/>
       </div>
