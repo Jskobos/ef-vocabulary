@@ -1,8 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow, mount, render} from 'enzyme';
 import SearchBox from './SearchBox';
 
+const cefr = {min:0,max:6};
+const books = {min:1,max:10}
+const units = {min:1,max:10}
+
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<SearchBox/>, div);
+  const wrapper = mount(<SearchBox filterText='' cefr={cefr} books={books} units={units} set='' />);
+  expect(wrapper.props().cefr).toEqual(cefr);
 });
