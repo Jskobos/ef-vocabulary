@@ -21,15 +21,9 @@ class FormRow extends Component {
   }
 
   handleChange(e) {
-    const name = e.target.name;
-    switch(name) {
-      case 'word': this.setState({ word: e.target.value }); break;
-      case 'set' : this.setState({ set:  e.target.value }); break;
-      case 'part': this.setState({ part: e.target.value }); break;
-      case 'book': this.setState({ book: e.target.value }); break;
-      case 'unit': this.setState({ unit: e.target.value }); break;
-      default:     this.setState({ cefr: e.target.value });
-    }
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   addVocabEntry() {
