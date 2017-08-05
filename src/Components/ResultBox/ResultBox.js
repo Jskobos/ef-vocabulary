@@ -7,8 +7,12 @@ import './ResultBox.css';
 class ResultBox extends Component {
   constructor(props) {
     super(props);
-    this.getTags    = this.getTags.bind(this);
-    this.filterWord = this.filterWord.bind(this);
+    this.state = {
+      editableWordID: null
+    };
+    this.getTags         = this.getTags.bind(this);
+    this.filterWord      = this.filterWord.bind(this);
+    this.setEditableWord = this.setEditableWord.bind(this);
   }
 
   getTags(word) {
@@ -25,10 +29,18 @@ class ResultBox extends Component {
     for (let w in words) {
       const word = words[w];
       rows.push(
-        <WordRow word={word} wid={word.wid} deleteVocabEntry={this.props.deleteVocabEntry} key={word.wid}/>
+        <WordRow word={word} wid={word.wid} setEditableWord={this.setEditableWord}
+          deleteVocabEntry={this.props.deleteVocabEntry} key={word.wid}/>
       )
     }
     return rows;
+  }
+
+  setEditableWord(wordID) {
+    this.setState({
+      editableWordID: wordID
+    });
+    console.log(this.state.editableWordID);
   }
 
   filterWord(word) {
