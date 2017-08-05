@@ -52,7 +52,8 @@ class VocabBox extends Component {
 
   deleteVocabEntry(wordID) {
     const wordRef = firebase.database().ref('/projects/' + this.props.project.key + '/vocab/' + wordID);
-    wordRef.remove().then(() => console.log(`Database entry ${wordID} removed.`));
+    wordRef.remove().then(() => console.log(`Database entry ${wordID} removed.`))
+      .catch((err) => console.log(err));
   }
 
   render() {

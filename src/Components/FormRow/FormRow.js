@@ -27,8 +27,8 @@ class FormRow extends Component {
   }
 
   addVocabEntry() {
-    let state = this.getValidState();
-    if (!state) {
+    let valid = this.getValidState();
+    if (!valid) {
       this.setState({feedback:true});
       return;
     }
@@ -51,12 +51,12 @@ class FormRow extends Component {
   }
 
   getValidState() {
-    let state = true;
+    let valid = true;
     if (this.state.word.length < 1 || this.state.part.length < 1 || this.state.book.length < 1 || this.state.unit.length < 1) {
-      state = false;
+      valid = false;
     }
-    else if (isNaN(this.state.unit) || isNaN(this.state.book)) { state = false; }
-    return state;
+    else if (isNaN(this.state.unit) || isNaN(this.state.book)) { valid = false; }
+    return valid;
   }
 
   validateWordField() {

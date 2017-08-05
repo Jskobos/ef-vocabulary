@@ -19,6 +19,18 @@ class ResultBox extends Component {
     return tags.join(', ');
   }
 
+  getRows(words) {
+    let rows = [];
+    words = this.sortBy(words,this.props.sortKey);
+    for (let w in words) {
+      const word = words[w];
+      rows.push(
+        <WordRow word={word} wid={word.wid} deleteVocabEntry={this.props.deleteVocabEntry} key={word.wid}/>
+      )
+    }
+    return rows;
+  }
+
   filterWord(word) {
     const tags = this.getTags(word);
     if (word.word.indexOf(this.props.filterText) === -1) {
@@ -53,21 +65,14 @@ class ResultBox extends Component {
 
   render() {
     let words = [];
-    let rows = [];
-    let keyIndex = 0;
     for (let w in this.props.vocab) {
       const word = this.props.vocab[w];
+      word.wid = w;
       if (this.filterWord(word)) {
         words.push(word);
       }
     }
-    words = this.sortBy(words,this.props.sortKey);
-    for (let w in words) {
-      const word = words[w];
-      rows.push(
-        <WordRow word={word} wid={w} deleteVocabEntry={this.props.deleteVocabEntry} key={keyIndex++}/>
-      )
-    }
+    const rows = this.getRows(words);
     return(
       <div className="ResultBox">
         <Table responsive hover>
