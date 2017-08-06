@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import WordRow from '../WordRow/WordRow';
 import FormRow from '../FormRow/FormRow';
+import EditWord from '../EditWord/EditWord';
 import './ResultBox.css';
 
 class ResultBox extends Component {
@@ -12,6 +13,7 @@ class ResultBox extends Component {
     };
     this.getTags         = this.getTags.bind(this);
     this.filterWord      = this.filterWord.bind(this);
+    this.editVocabEntry  = this.editVocabEntry.bind(this);
     this.setEditableWord = this.setEditableWord.bind(this);
   }
 
@@ -28,19 +30,31 @@ class ResultBox extends Component {
     words = this.sortBy(words,this.props.sortKey);
     for (let w in words) {
       const word = words[w];
-      rows.push(
+      if (word.wid === this.state.editableWordID) {
+        rows.push(
+          <EditWord word={word} editVocabEntry={this.editVocabEntry} key={word.wid}/>
+        )
+      }
+      else {
+        rows.push(
         <WordRow word={word} wid={word.wid} setEditableWord={this.setEditableWord}
           deleteVocabEntry={this.props.deleteVocabEntry} key={word.wid}/>
-      )
+        )
+      }
     }
     return rows;
   }
 
   setEditableWord(wordID) {
+    console.log('setting');
     this.setState({
       editableWordID: wordID
     });
-    console.log(this.state.editableWordID);
+  }
+
+  editVocabEntry(entry,wordID) {
+    this.setEditableWord(null);
+    this.props.editVocabEntry(entry,wordID);
   }
 
   filterWord(word) {

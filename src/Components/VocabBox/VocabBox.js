@@ -21,6 +21,7 @@ class VocabBox extends Component {
     this.handleTextInput  = this.handleTextInput.bind(this);
     this.handleSetInput   = this.handleSetInput.bind(this);
     this.addVocabEntry    = this.addVocabEntry.bind(this);
+    this.editVocabEntry   = this.editVocabEntry.bind(this);
     this.deleteVocabEntry = this.deleteVocabEntry.bind(this);
     this.setMinMax        = this.setMinMax.bind(this);
   }
@@ -50,6 +51,11 @@ class VocabBox extends Component {
     vocabRef.push(entry);
   }
 
+  editVocabEntry(entry,wordID) {
+    const wordRef = firebase.database().ref('/projects/' + this.props.project.key + '/vocab/' + wordID);
+    wordRef.set(entry);
+  }
+
   deleteVocabEntry(wordID) {
     const wordRef = firebase.database().ref('/projects/' + this.props.project.key + '/vocab/' + wordID);
     wordRef.remove().then(() => console.log(`Database entry ${wordID} removed.`))
@@ -75,6 +81,7 @@ class VocabBox extends Component {
                    filterText={this.state.filterText}
                    sortKey={this.state.sortKey}
                    addVocabEntry={this.addVocabEntry}
+                   editVocabEntry={this.editVocabEntry}
                    deleteVocabEntry={this.deleteVocabEntry}/>
       </div>
     )

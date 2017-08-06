@@ -1,3 +1,7 @@
 th {
   text-align: center;
 }
+
+.editable-row {
+  background-color: purple;
+}
