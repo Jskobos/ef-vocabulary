@@ -44,12 +44,12 @@ class EditWord extends FormRow {
     for (let tag in word.tags) {
       tags.push(word.tags[tag]);
     }
-    return tags.join(', ');
+    return tags.join(',');
   }
 
   render() {
     return (
-      <tr className="FormRow">
+      <tr className="EditWord">
           <td>
             <FormGroup validationState={this.validateWordField()}>
               <FormControl

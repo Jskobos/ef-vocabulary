@@ -1,3 +1,12 @@
+tr.EditWord td {
+  padding: 3px !important;
+  background: rgba(0,0,0,0.125);
+}
+
+tr.EditWord div.form-group {
+  margin-bottom: 0px !important;
+}
+
 input {
   margin: auto;
   text-align: center;
