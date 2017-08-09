@@ -3,6 +3,7 @@ import { Table } from 'react-bootstrap';
 import WordRow from '../WordRow/WordRow';
 import FormRow from '../FormRow/FormRow';
 import EditWord from '../EditWord/EditWord';
+import renderIf from 'render-if';
 import './ResultBox.css';
 
 class ResultBox extends Component {
@@ -114,7 +115,8 @@ class ResultBox extends Component {
             </tr>
           </thead>
           <tbody>
-            <FormRow addVocabEntry={this.props.addVocabEntry}/>
+            {renderIf(this.props.projectID !== 'newProject' && this.props.projectID !== undefined)
+              (<FormRow addVocabEntry={this.props.addVocabEntry}/>)}
             {rows}
           </tbody>
         </Table>

@@ -92,7 +92,7 @@ class App extends Component {
                    onSelect={(i) => this.setActiveProject(i)}
                    activeProject={this.state.activeProject}
                    setActiveProject={this.setActiveProject}/>
-          <VocabBox project={this.getActiveProject()}/>
+          <VocabBox project={this.getActiveProject()} projectID={this.state.activeProject}/>
         </div>
       </div>
     );

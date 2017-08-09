@@ -74,6 +74,7 @@ class VocabBox extends Component {
                    handleSetInput={this.handleSetInput}
                    setMinMax={this.setMinMax}/>
         <ResultBox vocab={this.state.vocab}
+                   projectID={this.props.projectID}
                    cefr={this.state.cefr}
                    set={this.state.set}
                    books={this.state.books}
