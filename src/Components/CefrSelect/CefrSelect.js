@@ -15,6 +15,7 @@ const CefrSelect = (props) => {
       <option value="3">B2</option>
       <option value="4">C1</option>
       <option value="5">C2</option>
+      <option value="6">NA</option>
     </FormControl>
   )
 }

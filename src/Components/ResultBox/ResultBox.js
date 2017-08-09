@@ -63,9 +63,6 @@ class ResultBox extends Component {
     if (word.word.indexOf(this.props.filterText) === -1) {
       return false;
     }
-    else if (word.cefr < this.props.cefrMin || word.cefr > this.props.cefrMax ) {
-      return false;
-    }
     else if (this.props.set.length > 1 && tags.indexOf(this.props.set) === -1) {
       return false;
     }

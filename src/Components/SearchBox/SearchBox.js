@@ -36,7 +36,7 @@ class SearchBox extends Component {
   }
 
   clearAll() {
-    this.props.setMinMax('cefr',0,5);
+    this.props.setMinMax('cefr',0,6);
     this.props.setMinMax('units',1,10);
     this.props.setMinMax('books',1,10);
     this.props.handleTextInput('');

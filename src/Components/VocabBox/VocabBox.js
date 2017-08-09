@@ -13,7 +13,7 @@ class VocabBox extends Component {
       set: '',
       units: {min:1, max:10},
       books: {min:1, max:10},
-      cefr:  {min:0,max:5},
+      cefr:  {min:0,max:6},
       vocab: this.props.project.vocab,
       sortKey: 'word'
     }

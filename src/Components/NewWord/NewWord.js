@@ -39,7 +39,7 @@ class FormRow extends Component {
       tags: tags,
       book: this.state.book,
       unit: this.state.unit,
-      cefr: this.state.cefr
+      cefr: this.state.cefr || 6
     }
     this.props.addVocabEntry(entry);
     this.setState({
