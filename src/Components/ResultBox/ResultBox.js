@@ -101,7 +101,7 @@ class ResultBox extends Component {
 
   sortBy(wordArray, sortKey) {
     const sortedArray = wordArray.sort((a,b) => {
-      return a[sortKey] > b[sortKey];
+      return a[sortKey].localeCompare(b[sortKey]);
     });
     return sortedArray;
   }
