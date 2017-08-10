@@ -2,3 +2,32 @@ div.App > nav.navbar {
   margin: 0px;
   height: 10vh;
 }
+
+.Navbar {
+  height: 10vh;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px rgba(0,0,0,0.1);
+}
+
+.Navbar .nav-content {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.Navbar .banner {
+  font-size: 1.6em;
+  padding-left: 1em;
+}
+
+.Navbar .nav-item {
+  margin: 1em;
+}
+
+.Navbar .display-name {
+  font-size: 1.2em;
+}
