@@ -28,7 +28,9 @@ class VocabBox extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      vocab: nextProps.project.vocab
+      vocab: nextProps.project.vocab,
+      units: {min:1, max:nextProps.project.units},
+      books: {min:1, max:nextProps.project.books},
     })
   }
 
