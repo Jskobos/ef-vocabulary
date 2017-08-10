@@ -11,12 +11,12 @@ class EditWord extends FormRow {
     const tags = this.getTags(props.word);
     this.state = {
       feedback: false,
-      word: props.word.word,
-      part: props.word.part,
-      tags: tags,
-      book: props.word.book,
-      unit: props.word.unit,
-      cefr: props.word.cefr
+      word: props.word.word || '',
+      part: props.word.part || '',
+      tags: tags || '',
+      book: props.word.book || '',
+      unit: props.word.unit || '',
+      cefr: props.word.cefr || 6
     }
     this.editVocabEntry = this.editVocabEntry.bind(this);
   }

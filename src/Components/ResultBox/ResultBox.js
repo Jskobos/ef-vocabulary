@@ -56,7 +56,6 @@ class ResultBox extends Component {
   }
 
   setEditableWord(wordID) {
-    console.log('setting');
     this.setState({
       editableWordID: wordID
     });
@@ -69,10 +68,11 @@ class ResultBox extends Component {
 
   filterWord(word) {
     const tags = this.getTags(word);
-    if (word.word.indexOf(this.props.filterText) === -1) {
+    const entry = word.word.toLowerCase();
+    if (entry.indexOf(this.props.filterText.toLowerCase()) === -1) {
       return false;
     }
-    else if (this.props.set.length > 1 && tags.indexOf(this.props.set) === -1) {
+    else if (this.props.tags.length > 1 && tags.indexOf(this.props.tags) === -1) {
       return false;
     }
     else if (word.book < this.props.books.min || word.book > this.props.books.max) {
@@ -136,8 +136,7 @@ class ResultBox extends Component {
             </tr>
           </thead>
           <tbody>
-            {renderIf(this.props.projectID !== 'newProject' && this.props.projectID !== undefined)
-              (<NewWord addVocabEntry={this.props.addVocabEntry}/>)}
+            {renderIf(this.props.projectID !== 'newProject' && this.props.projectID !== undefined)(<NewWord addVocabEntry={this.props.addVocabEntry}/>)}
             {rows}
           </tbody>
         </Table>

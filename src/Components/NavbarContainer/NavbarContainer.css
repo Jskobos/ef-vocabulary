@@ -12,13 +12,6 @@ div.App > nav.navbar {
   border-bottom: solid 1px rgba(0,0,0,0.1);
 }
 
-.Navbar .nav-content {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-}
-
 .Navbar .banner {
   font-size: 1.6em;
   padding-left: 1em;

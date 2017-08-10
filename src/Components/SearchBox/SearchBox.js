@@ -18,7 +18,7 @@ class SearchBox extends Component {
   }
 
   onSetInputChange(e) {
-    this.props.handleSetInput(e.target.value);
+    this.props.handleTagInput(e.target.value);
   }
 
   onMinChange(e) {
@@ -40,7 +40,7 @@ class SearchBox extends Component {
     this.props.setMinMax('units',1,10);
     this.props.setMinMax('books',1,10);
     this.props.handleTextInput('');
-    this.props.handleSetInput('');
+    this.props.handleTagInput('');
   }
 
   render() {

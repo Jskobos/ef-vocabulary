@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { FormControl, FormGroup, Button } from 'react-bootstrap';
-import CefrSelect from '../CefrSelect/CefrSelect';
 import './FormRow.css';
 
 
@@ -54,60 +52,6 @@ class FormRow extends Component {
   render() {
     return (
       <tr className="FormRow">
-          <td>
-            <FormGroup validationState={this.validateWordField()}>
-              <FormControl
-                name="word"
-                className="row-input-long"
-                type="text"
-                value={this.state.word}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-          </td>
-          <td>
-            <FormGroup>
-              <FormControl
-                name="part"
-                className="row-input-med"
-                type="text"
-                value={this.state.part}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-          </td>
-          <td><FormControl
-                name="set"
-                className="row-input-long"
-                type="text"
-                value={this.state.set}
-                onChange={this.handleChange}
-              />
-          </td>
-          <td>
-            <FormGroup validationState={this.validateBookField()}>
-              <FormControl
-                name="book"
-                className="row-input"
-                type="text"
-                value={this.state.book}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-          </td>
-          <td>
-            <FormGroup validationState={this.validateUnitField()}>
-              <FormControl
-                name="unit"
-                className="row-input"
-                type="text"
-                value={this.state.unit}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-          </td>
-          <td><CefrSelect onChange={this.handleChange} value={this.state.cefr}/></td>
-          <td><Button bsStyle="primary" onClick={this.addVocabEntry}>Add</Button></td>
       </tr>
     )
   }

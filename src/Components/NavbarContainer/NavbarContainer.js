@@ -18,7 +18,7 @@ class NavbarContainer extends Component {
     return(
       <div className="Navbar">
         <div className="banner nav-item">E1PD Vocab</div>
-        <div classname="nav-content">
+        <div className="nav-content">
           <span className="display-name nav-item">{this.props.user}</span>
           <Button className="nav-item" bsStyle="primary" onClick={this.signOut}>Sign Out</Button>
         </div>

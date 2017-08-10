@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FormControl, FormGroup, Button } from 'react-bootstrap';
 import CefrSelect from '../CefrSelect/CefrSelect';
 import FormRow from '../FormRow/FormRow';
@@ -15,7 +15,7 @@ class NewWord extends FormRow {
       unit: '',
       part: '',
       word: '',
-      set: ''
+      tags: ''
     }
     this.addVocabEntry = this.addVocabEntry.bind(this);
   }
@@ -26,7 +26,7 @@ class NewWord extends FormRow {
       this.setState({feedback:true});
       return;
     }
-    const tags = this.state.set.split(',');
+    const tags = this.state.tags.split(',');
     const entry = {
       word: this.state.word,
       part: this.state.part,
@@ -38,8 +38,9 @@ class NewWord extends FormRow {
     this.props.addVocabEntry(entry);
     this.setState({
       word:'',
-      set:'',
+      tags:'',
       part:'',
+      cefr:this.state.cefr || 6,
       feedback: false
     })
   }
@@ -70,10 +71,10 @@ class NewWord extends FormRow {
             </FormGroup>
           </td>
           <td><FormControl
-                name="set"
+                name="tags"
                 className="row-input-long"
                 type="text"
-                value={this.state.set}
+                value={this.state.tags}
                 onChange={this.handleChange}
               />
           </td>

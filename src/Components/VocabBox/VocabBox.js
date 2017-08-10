@@ -10,7 +10,7 @@ class VocabBox extends Component {
     super(props)
     this.state = {
       filterText: '',
-      set: '',
+      tags: '',
       units: {min:1, max:10},
       books: {min:1, max:10},
       cefr:  {min:0,max:6},
@@ -19,7 +19,7 @@ class VocabBox extends Component {
     }
 
     this.handleTextInput  = this.handleTextInput.bind(this);
-    this.handleSetInput   = this.handleSetInput.bind(this);
+    this.handleTagInput   = this.handleTagInput.bind(this);
     this.addVocabEntry    = this.addVocabEntry.bind(this);
     this.editVocabEntry   = this.editVocabEntry.bind(this);
     this.deleteVocabEntry = this.deleteVocabEntry.bind(this);
@@ -38,8 +38,8 @@ class VocabBox extends Component {
     this.setState({filterText:val})
   }
 
-  handleSetInput(val) {
-    this.setState({set:val})
+  handleTagInput(val) {
+    this.setState({tags:val})
   }
 
   setMinMax(target,min,max) {
@@ -69,16 +69,16 @@ class VocabBox extends Component {
       <div className="VocabBox">
         <SearchBox filterText={this.state.filterText}
                    cefr={this.state.cefr}
-                   set={this.state.set}
+                   tags={this.state.tags}
                    books={this.state.books}
                    units={this.state.units}
                    handleTextInput={this.handleTextInput}
-                   handleSetInput={this.handleSetInput}
+                   handleTagInput={this.handleTagInput}
                    setMinMax={this.setMinMax}/>
         <ResultBox vocab={this.state.vocab}
                    projectID={this.props.projectID}
                    cefr={this.state.cefr}
-                   set={this.state.set}
+                   tags={this.state.tags}
                    books={this.state.books}
                    units={this.state.units}
                    filterText={this.state.filterText}
