@@ -10,12 +10,20 @@ class ResultBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editableWordID: null
+      editableWordID: null,
+      maxWordsDisplayed: 100
     };
-    this.getTags         = this.getTags.bind(this);
-    this.filterWord      = this.filterWord.bind(this);
-    this.editVocabEntry  = this.editVocabEntry.bind(this);
-    this.setEditableWord = this.setEditableWord.bind(this);
+    this.getTags           = this.getTags.bind(this);
+    this.filterWord        = this.filterWord.bind(this);
+    this.editVocabEntry    = this.editVocabEntry.bind(this);
+    this.setEditableWord   = this.setEditableWord.bind(this);
+    this.incrementMaxWords = this.incrementMaxWords.bind(this);
+    this.handleScroll      = this.handleScroll.bind(this);
+  }
+
+  componentDidMount() {
+    const el = document.getElementsByClassName('ResultBox')[0];
+    el.onscroll = this.handleScroll;
   }
 
   getTags(word) {
@@ -42,6 +50,7 @@ class ResultBox extends Component {
           deleteVocabEntry={this.props.deleteVocabEntry} key={word.wid}/>
         )
       }
+      if (rows.length >= this.state.maxWordsDisplayed) { return rows; }
     }
     return rows;
   }
@@ -80,11 +89,26 @@ class ResultBox extends Component {
     }
   }
 
+  handleScroll(e) {
+    const rect = e.target.getBoundingClientRect();
+    const topHeight = Math.ceil(rect.top) + 20;
+    const minPixel = e.target.offsetTop;
+    const maxPixel = e.target.scrollHeight - minPixel - topHeight;
+    if (e.target.scrollTop >= maxPixel) {
+      this.incrementMaxWords();
+    }
+  }
+
   sortBy(wordArray, sortKey) {
     const sortedArray = wordArray.sort((a,b) => {
       return a[sortKey] > b[sortKey];
     });
     return sortedArray;
+  }
+
+  incrementMaxWords(increment=50) {
+    const newMax = this.state.maxWordsDisplayed + increment;
+    this.setState({maxWordsDisplayed: newMax});
   }
 
   render() {
@@ -99,7 +123,7 @@ class ResultBox extends Component {
     const rows = this.getRows(words);
     return(
       <div className="ResultBox">
-        <Table responsive hover>
+        <Table id="WordTable" responsive hover>
           <thead>
             <tr>
               <th>word</th>
