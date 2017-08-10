@@ -12,7 +12,7 @@ class FormRow extends Component {
       unit: '',
       part: '',
       word: '',
-      set: ''
+      tags: ''
     }
     this.handleChange = this.handleChange.bind(this);
   }
