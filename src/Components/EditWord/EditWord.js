@@ -62,7 +62,7 @@ class EditWord extends FormRow {
             </FormGroup>
           </td>
           <td>
-            <FormGroup validationState={this.validatePartField()}>
+            <FormGroup>
               <FormControl
                 name="part"
                 className="row-input-med"

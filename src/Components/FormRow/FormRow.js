@@ -17,7 +17,6 @@ class FormRow extends Component {
       set: ''
     }
     this.handleChange = this.handleChange.bind(this);
-    this.addVocabEntry = this.addVocabEntry.bind(this);
   }
 
   handleChange(e) {
@@ -26,33 +25,9 @@ class FormRow extends Component {
     });
   }
 
-  addVocabEntry() {
-    let valid = this.getValidState();
-    if (!valid) {
-      this.setState({feedback:true});
-      return;
-    }
-    const tags = this.state.set.split(',');
-    const entry = {
-      word: this.state.word,
-      part: this.state.part,
-      tags: tags,
-      book: this.state.book,
-      unit: this.state.unit,
-      cefr: this.state.cefr
-    }
-    this.props.addVocabEntry(entry);
-    this.setState({
-      word:'',
-      set:'',
-      part:'',
-      feedback: false
-    })
-  }
-
   getValidState() {
     let valid = true;
-    if (this.state.word.length < 1 || this.state.part.length < 1 || this.state.book.length < 1 || this.state.unit.length < 1) {
+    if (this.state.word.length < 1 || this.state.book.length < 1 || this.state.unit.length < 1) {
       valid = false;
     }
     else if (isNaN(this.state.unit) || isNaN(this.state.book)) { valid = false; }
@@ -76,14 +51,6 @@ class FormRow extends Component {
     else if (this.state.book.length > 0 && !isNaN(this.state.book)) return 'success';
     else return 'error';
   }
-
-  validatePartField() {
-    if (!this.state.feedback) return null;
-    else if (this.state.part.length > 1) return 'success';
-    else return 'error';
-  }
-
-
   render() {
     return (
       <tr className="FormRow">
@@ -99,7 +66,7 @@ class FormRow extends Component {
             </FormGroup>
           </td>
           <td>
-            <FormGroup validationState={this.validatePartField()}>
+            <FormGroup>
               <FormControl
                 name="part"
                 className="row-input-med"

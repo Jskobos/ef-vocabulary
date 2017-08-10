@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'react-bootstrap';
 import WordRow from '../WordRow/WordRow';
-import FormRow from '../FormRow/FormRow';
+import NewWord from '../NewWord/NewWord';
 import EditWord from '../EditWord/EditWord';
 import renderIf from 'render-if';
 import './ResultBox.css';
@@ -137,7 +137,7 @@ class ResultBox extends Component {
           </thead>
           <tbody>
             {renderIf(this.props.projectID !== 'newProject' && this.props.projectID !== undefined)
-              (<FormRow addVocabEntry={this.props.addVocabEntry}/>)}
+              (<NewWord addVocabEntry={this.props.addVocabEntry}/>)}
             {rows}
           </tbody>
         </Table>
